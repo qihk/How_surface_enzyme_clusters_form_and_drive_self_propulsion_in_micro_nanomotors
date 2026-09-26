@@ -24,7 +24,7 @@ This script is used to place a large number of urease molecules in the simulatio
 
 Contains the atomic information of the spherical colloidal particle used as the base structure.
 
-This file provides the particle coordinates and structural information required by the colloid-generation and modification scripts.
+This file provides the particle coordinates and structural information required by the colloid-generation scripts.
 
 ---
 
