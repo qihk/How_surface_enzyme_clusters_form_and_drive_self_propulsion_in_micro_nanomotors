@@ -166,7 +166,7 @@ The scripts generate structural/data files containing the colloidal particle wit
 
 The model-generation demos typically complete within approximately 1–10 min on a standard desktop computer, depending on the selected model parameters and hardware configuration.
 
-## Usage
+## Usage and expected output
 
 Different catalytic surface organizations can be generated using `generate-random.py`, `generate-nbinomial.py`, and `generate-Janus.py`.
 
@@ -175,6 +175,27 @@ Catalytic coverage and surface-distribution parameters can be modified directly 
 For urease model construction, `Urease-CG-generate.py` converts the all-atom urease structure into the coarse-grained representation, which can subsequently be used by `Urease-AA-generate.py` to construct larger initial simulation systems.
 
 Detailed descriptions of the GPCG model, MPC scheme, reaction model, interaction parameters, and simulation parameters are provided in the Methods and Supplementary Information of the associated manuscript.
+
+### Minimal example input and expected output
+
+Several example files are provided to demonstrate the model-generation workflow and the expected outputs of the corresponding scripts.
+
+For the urease coarse-graining and initial-system construction:
+
+- `urease-cg.xyz` is an example coarse-grained urease structure generated using `Urease-CG-generate.py`.
+- `urease-colloid.lammpsdata` is an example initial GPCG simulation system generated using `Urease-AA-generate.py`.
+
+For this example, the lateral simulation-box dimensions were set to $L_x=L_y=30$, and the system contains `Nurease = 1000` coarse-grained urease molecules together with the colloidal particle.
+
+Three additional example files are provided for the different catalytic surface organizations. In all three cases, the catalytic surface fraction was set to 20%, corresponding to `Number_Type2 = int(Nsurface * 0.2)`.
+
+The corresponding example outputs are:
+
+- `random-phi20%.lammpsdata`: a colloidal particle with randomly distributed catalytic surface sites.
+- `nbinomial-phi20%.lammpsdata`: a colloidal particle with clustered catalytic surface sites generated using the negative-binomial-based distribution.
+- `janus-phi20%.lammpsdata`: a Janus colloidal particle with catalytic surface sites confined to one side of the particle.
+
+These example files provide representative outputs of the catalytic surface-organization procedures and can be used to verify that the corresponding generation scripts run successfully and produce the expected model configurations.
 
 ## Reproducibility
 
