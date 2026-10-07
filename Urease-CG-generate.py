@@ -60,8 +60,6 @@ else:
 
 cg_coords = np.vstack([cg_coords, coords_Ni])
 types = np.ones(len(cg_coords), dtype=int)
-charges = np.zeros(len(cg_coords))
-
 for idx in type2_indices:
     types[idx] = 2
 
@@ -73,31 +71,19 @@ mean_radius_before = np.mean(np.linalg.norm(cg_coords - center, axis=1))
 scale = lj_diameter / mean_radius_before
 cg_coords = (cg_coords - center) * scale
 
+# Add one atom at the geometric center of the coarse-grained urease.
+center = np.mean(cg_coords, axis=0)
+cg_coords = np.vstack([cg_coords, center])
+types = np.append(types, 4)
+
 with open("urease-cg.xyz", "w") as f:
     f.write(f"{len(cg_coords)}\n")
-    f.write(f"\n")
+    f.write("\n")
     atom_idx = 1
-    type_map = {1:"C", 2:"N", 3:"Ni"}
-    for (x, y, z), t, q in zip(cg_coords, types, charges):
+    type_map = {1: "C", 2: "N", 3: "Ni", 4: "Si"}
+    for (x, y, z), t in zip(cg_coords, types):
         atom_name = type_map[t]
-        f.write(f"{atom_idx}\t{atom_name}\t{x:.8f}\t{y:.8f}\t{z:.8f}\t{q:.2f}\n")
+        f.write(f"{atom_idx}\t{atom_name}\t{x:.8f}\t{y:.8f}\t{z:.8f}\n")
         atom_idx += 1
 
 print("CG-structure outputs to file urease-cg.xyz...")
-
-center = np.mean(cg_coords, axis=0)
-radii = np.linalg.norm(cg_coords - center, axis=1)
-mean_radius = np.mean(radii)
-cg_coords = np.vstack([cg_coords, center])
-types = np.append(types, 4)
-charges = np.append(charges, 0.01)
-
-with open("urease-cg.xyz", "w") as f:
-    f.write(f"{len(cg_coords)}\n")
-    f.write(f"\n")
-    atom_idx = 1
-    type_map = {1:"C", 2:"N", 3:"Ni", 4:"Si"}
-    for (x, y, z), t, q in zip(cg_coords, types, charges):
-        atom_name = type_map[t]
-        f.write(f"{atom_idx}\t{atom_name}\t{x:.8f}\t{y:.8f}\t{z:.8f}\t{q:.2f}\n")
-        atom_idx += 1
