@@ -166,7 +166,7 @@ The scripts generate structural/data files containing the colloidal particle wit
 
 The model-generation demos typically complete within approximately 1–10 min on a standard desktop computer, depending on the selected model parameters and hardware configuration.
 
-## Usage and expected output
+## Usage
 
 Different catalytic surface organizations can be generated using `generate-random.py`, `generate-nbinomial.py`, and `generate-Janus.py`.
 
