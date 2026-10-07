@@ -5,8 +5,8 @@ from scipy.spatial import cKDTree
 # 参数
 # =========================
 Urease_CG_File = "urease-cg.xyz"
-File_Colloid_Data_List = ["colloid-structure.data", "colloid-structure-SiO2.data", "colloid-structure-SiO2-hollow.data"]
-File_Colloid_Data = File_Colloid_Data_List[2]
+File_Colloid_Data_List = ["colloid-structure.data"]
+File_Colloid_Data = File_Colloid_Data_List[0]
 output_file = "urease-colloid.lammpsdata"
 Box_x = 150.0
 Box_y = 150.0
