@@ -179,8 +179,8 @@ def write_lammps_data(total_atoms, filename):
         f.write(f"\t0.0 {Box_z} zlo zhi\n\n")
 
         f.write("Masses\n\n")
-        f.write("\t1 0.15\n")
-        f.write("\t2 0.15\n")
+        f.write("\t1 0.42\n")
+        f.write("\t2 0.42\n")
         f.write("\t3 2.42\n")
         f.write("\t4 0.05\n")
         f.write("\t5 0.05\n")
